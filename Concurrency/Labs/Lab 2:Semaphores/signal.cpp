@@ -19,12 +19,16 @@ void taskTwo(std::shared_ptr<Semaphore> theSemaphore){
 
 int main(void){
   std::thread threadOne, threadTwo;
+
+  
   std::shared_ptr<Semaphore> sem( new Semaphore);
   /**< Launch the threads  */
-  threadOne=std::thread(taskTwo,sem);
   threadTwo=std::thread(taskOne,sem);
+  threadOne=std::thread(taskTwo,sem);
+  
   std::cout << "Launched from the main\n";
   threadOne.join();
   threadTwo.join();
   return 0;
+  
 }
